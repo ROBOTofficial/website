@@ -9,9 +9,9 @@ import ArticleLink from "../components/ArticleLink.astro";
 import { getCollection } from "astro:content";
 import { PROFILE } from "../consts";
 
-const articles = (await getCollection("articles")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const articles = (await getCollection("articles"))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(30);
 ---
 
 <MainLayout>
@@ -56,7 +56,11 @@ const articles = (await getCollection("articles")).sort(
 			</div>
 		</div>
 		<div class="left">
-			{articles.map(({ data, id }) => <ArticleLink title={data.title} url={`/articles/${id}`} />)}
+			{
+				articles.map(({ data, id }) =>
+					!data.draft ? <ArticleLink title={data.title} url={`/articles/${id}`} /> : null
+				)
+			}
 		</div>
 	</div>
 </MainLayout>
