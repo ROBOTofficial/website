@@ -6,21 +6,15 @@ updatedDate: 2024-6-9
 
 ## 何故書こうと思ったのか
 
-自身が運営するサイトのアカウントシステムで、Discordみたいにユ
-ーザーが作ったサイトをアカウントとリンクさせたいと思い調べた
-ら、案外日本語記事が少ないことに気づいたので今回書きました。
+自身が運営するサイトのアカウントシステムで、Discordみたいにユーザーが作ったサイトをアカウントとリンクさせたいと思い調べたら、案外日本語記事が少ないことに気づいたので今回書きました。
 
 ## どのように取得するのか
 
-今回はNode.jsの公式ライブラリであるdnsライブラリを使っていき
-ます。
+今回はNode.jsの公式ライブラリであるdnsライブラリを使っていきます。
 
-dnsライブラリには同期のdnsと非同期のdns/promisesがあるので、
-この記事では同期と非同期を分けて解説していきます。
+dnsライブラリには同期のdnsと非同期のdns/promisesがあるので、この記事では同期と非同期を分けて解説していきます。
 
-また今回レコードを取得するドメインに関してですが、\_discord.w
-ktk.moeにちょうどよくDiscordとリンクするためのTxtレコードがあ
-ったので、それを使っていきます。
+また今回レコードを取得するドメインに関してですが、\_discord.wktk.moeにちょうどよくDiscordとリンクするためのTxtレコードがあったので、それを使っていきます。
 
 ### 同期
 
@@ -38,62 +32,46 @@ dns.resolveTxt("_discord.wktk.moe", (err, records) => {
 });
 ```
 
-<br>
-
 今回はif (err)の部分でエラーハンドリングをしています。
 
-エラー検知後の処理をthrow new Errorにしていますが、ここは変更
-しても大丈夫です。
+エラー検知後の処理をthrow new Errorにしていますが、ここは変更しても大丈夫です。
 
-<br>
+また同期にするとインデントなどが多くなってしまい、コードが見づらくなる可能性があるので自分はあまりお勧めしません。
 
-また同期にするとインデントなどが多くなってしまい、コードが見
-づらくなる可能性があるので自分はあまりお勧めしません。
+あくまで参考程度にしてほしいですが、自分は非同期の方を使っています。
 
-<br>
-
-あくまで参考程度にしてほしいですが、自分は非同期の方を使って
-います。
-
-理由は先ほど書いたインデントもそうですが、プログラムで非同期
-の部分が多いというのも理由の一つです。
+理由は先ほど書いたインデントもそうですが、プログラムで非同期の部分が多いというのも理由の一つです。
 
 ### 非同期
 
 非同期でやる場合は以下のようになります。
 
 ```js
-const dns = require("dns/promises")
+const dns = require("dns/promises");
 
 async function main() {
-    try {
-        let records = await dns.resolveTxt("_discord.wktk.mo
-e")
-        console.log(records)
-    } catch (error) {
-        throw new Error(error)
-    }
+	try {
+		let records = await dns.resolveTxt("_discord.wktk.moe");
+		console.log(records);
+	} catch (error) {
+		throw new Error(error);
+	}
 }
 
-main()
+main();
 ```
 
 関数名をmainにしていますが、ここは何でもOKです。
 
-<br>
-
 今回はエラーハンドリングにtry catchを使いました。
 
-またエラー検知後の処理がthrow new Errorになっていますが、変更
-しても大丈夫です。
+またエラー検知後の処理がthrow new Errorになっていますが、変更しても大丈夫です。
 
-個人的な感想ですが、自分は非同期の方がコードが見やすいので好
-きです。
+個人的な感想ですが、自分は非同期の方がコードが見やすいので好きです。
 
 ## TypeScript版
 
-今回解説したのはNode.jsだけでしたが、TypeScript版も作ったので
-一応書いておきます。
+今回解説したのはNode.jsだけでしたが、TypeScript版も作ったので一応書いておきます。
 
 ### 同期
 
@@ -126,11 +104,9 @@ import dns from "dns/promises";
 ## 最後に
 
 今回開設したのはTxtレコードの取得のみでしたが、他のレコードの
-取得も出来るので詳しくは[こちら](https://nodejs.org/api/dns.
-html)のサイトを見てください
+取得も出来るので詳しくは[こちら](https://nodejs.org/api/dns.html)のサイトを見てください
 
-記事の修正依頼等は私の [Twitterアカウント](https://x.com/rob
-ot_neet) までお願いします。
+記事の修正依頼等は私の [Twitterアカウント](https://x.com/robot_neet) までお願いします。
 
 ## 引用元
 

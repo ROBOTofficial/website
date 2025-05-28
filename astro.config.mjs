@@ -36,11 +36,11 @@ export default defineConfig({
 	],
 	markdown: {
 		remarkPlugins: [
+			[remarkLinkCard, { shortenUrl: true }],
 			remarkMath,
 			remarkGithubAdmonitionsToDirectives,
 			remarkDirective,
-			remarkSectionize,
-			[remarkLinkCard, { shortenUrl: true }]
+			remarkSectionize
 		],
 		rehypePlugins: [
 			rehypeKatex,
