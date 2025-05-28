@@ -11,7 +11,7 @@ import { PROFILE } from "../consts";
 
 const articles = (await getCollection("articles"))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(30);
+	.slice(0, 30);
 ---
 
 <MainLayout>
