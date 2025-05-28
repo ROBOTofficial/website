@@ -21,7 +21,7 @@ const shortInMobile = Astro.props.shortInMobile ?? true;
 		<p class="profile-description">{PROFILE.description}</p>
 	</div>
 </div>
-<div class="profile-info">
+<div class={shortInMobile ? "profile-info" : ""}>
 	<div>
 		<div class="sub-head">
 			<p>所属</p>
@@ -47,10 +47,10 @@ const shortInMobile = Astro.props.shortInMobile ?? true;
 		</div>
 	</div>
 </div>
-<div class="about-link sub-head">
-    <p>
-        <a href="/about">詳細を閲覧</a>
-    </p>
+<div class={`sub-head ${shortInMobile ? "about-link" : "hidden"}`}>
+	<p>
+		<a href="/about">詳細を閲覧</a>
+	</p>
 </div>
 
 <style>
@@ -79,27 +79,22 @@ const shortInMobile = Astro.props.shortInMobile ?? true;
 		font-family: "Mochiy Pop One", sans-serif;
 		font-size: 18px;
 	}
-    .about-link {
-        display: none;
-    }
+	.about-link {
+		display: none;
+	}
 
 	@media screen and (max-width: 950px) {
 		.profile-icon {
 			width: 30%;
 		}
 	}
+	@media screen and (max-width: 950px) {
+		.profile-info {
+			display: none;
+		}
+		.about-link {
+			display: block !important;
+			margin-top: 30px !important;
+		}
+	}
 </style>
-
-{shortInMobile &&
-    <style>
-        @media screen and (max-width: 950px) {
-            .profile-info {
-                display: none;
-            }
-            .about-link {
-                display: block !important;
-                margin-top: 30px !important;
-            }
-        }
-    </style>
-}
