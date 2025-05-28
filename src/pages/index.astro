@@ -9,7 +9,9 @@ import ArticleLink from "../components/ArticleLink.astro";
 import { getCollection } from "astro:content";
 import { PROFILE } from "../consts";
 
-const articles = await getCollection("articles");
+const articles = (await getCollection("articles")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <MainLayout>
