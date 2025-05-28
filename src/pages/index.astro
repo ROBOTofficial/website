@@ -3,11 +3,10 @@ import "@fontsource/mochiy-pop-one";
 
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentsBlock from "../components/ContentsBlock.astro";
-import Link from "../components/Link.astro";
 import ArticleLink from "../components/ArticleLink.astro";
+import Profile from "../components/Profile.astro";
 
 import { getCollection } from "astro:content";
-import { PROFILE } from "../consts";
 
 const articles = (await getCollection("articles"))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -19,39 +18,7 @@ const articles = (await getCollection("articles"))
 		<div class="right">
 			<div class="profile">
 				<ContentsBlock>
-					<div class="profile-txts">
-						<div>
-							<img class="profile-icon" src="/icon.webp" alt="" />
-						</div>
-						<div>
-							<p class="profile-name">{PROFILE.name}</p>
-							<p class="profile-description">{PROFILE.description}</p>
-						</div>
-					</div>
-					<div>
-						<div class="sub-head">
-							<p>所属</p>
-						</div>
-						<div class="profile-link">
-							{PROFILE.orgs.map((props) => <Link {...props} />)}
-						</div>
-					</div>
-					<div>
-						<div class="sub-head">
-							<p>開発参加</p>
-						</div>
-						<div class="profile-link">
-							{PROFILE.coding.map((props) => <Link {...props} />)}
-						</div>
-					</div>
-					<div>
-						<div class="sub-head">
-							<p>関連リンク</p>
-						</div>
-						<div class="profile-link">
-							{PROFILE.links.map((props) => <Link {...props} />)}
-						</div>
-					</div>
+					<Profile />
 				</ContentsBlock>
 			</div>
 		</div>
@@ -74,31 +41,6 @@ const articles = (await getCollection("articles"))
 		overflow: hidden;
 		width: 85%;
 		margin: 0 0 0 auto;
-	}
-	.profile-icon {
-		border-radius: 50%;
-		width: 50%;
-		margin: 0 auto;
-	}
-	.profile-name {
-		font-size: 30px;
-		font-weight: 600;
-		text-align: center;
-	}
-	.profile-description {
-		text-align: center;
-	}
-	.profile-link {
-		width: 80%;
-		margin: 0 auto 26px;
-	}
-	.sub-head {
-		text-align: center;
-		margin-top: 10px;
-	}
-	.sub-head p {
-		font-family: "Mochiy Pop One", sans-serif;
-		font-size: 18px;
 	}
 	p {
 		color: black;
