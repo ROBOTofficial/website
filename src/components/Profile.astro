@@ -4,6 +4,12 @@ import "@fontsource/mochiy-pop-one";
 import Link from "./Link.astro";
 
 import { PROFILE } from "../consts";
+
+export type Props = {
+	shortInMobile?: boolean;
+};
+
+const shortInMobile = Astro.props.shortInMobile ?? true;
 ---
 
 <div class="profile-txts">
@@ -15,29 +21,36 @@ import { PROFILE } from "../consts";
 		<p class="profile-description">{PROFILE.description}</p>
 	</div>
 </div>
-<div>
-	<div class="sub-head">
-		<p>所属</p>
+<div class="profile-info">
+	<div>
+		<div class="sub-head">
+			<p>所属</p>
+		</div>
+		<div class="profile-link">
+			{PROFILE.orgs.map((props) => <Link {...props} />)}
+		</div>
 	</div>
-	<div class="profile-link">
-		{PROFILE.orgs.map((props) => <Link {...props} />)}
+	<div>
+		<div class="sub-head">
+			<p>開発参加</p>
+		</div>
+		<div class="profile-link">
+			{PROFILE.coding.map((props) => <Link {...props} />)}
+		</div>
+	</div>
+	<div>
+		<div class="sub-head">
+			<p>関連リンク</p>
+		</div>
+		<div class="profile-link">
+			{PROFILE.links.map((props) => <Link {...props} />)}
+		</div>
 	</div>
 </div>
-<div>
-	<div class="sub-head">
-		<p>開発参加</p>
-	</div>
-	<div class="profile-link">
-		{PROFILE.coding.map((props) => <Link {...props} />)}
-	</div>
-</div>
-<div>
-	<div class="sub-head">
-		<p>関連リンク</p>
-	</div>
-	<div class="profile-link">
-		{PROFILE.links.map((props) => <Link {...props} />)}
-	</div>
+<div class="about-link sub-head">
+    <p>
+        <a href="/about">詳細を閲覧</a>
+    </p>
 </div>
 
 <style>
@@ -66,4 +79,27 @@ import { PROFILE } from "../consts";
 		font-family: "Mochiy Pop One", sans-serif;
 		font-size: 18px;
 	}
+    .about-link {
+        display: none;
+    }
+
+	@media screen and (max-width: 950px) {
+		.profile-icon {
+			width: 30%;
+		}
+	}
 </style>
+
+{shortInMobile &&
+    <style>
+        @media screen and (max-width: 950px) {
+            .profile-info {
+                display: none;
+            }
+            .about-link {
+                display: block !important;
+                margin-top: 30px !important;
+            }
+        }
+    </style>
+}
