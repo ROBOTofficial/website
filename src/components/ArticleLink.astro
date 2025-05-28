@@ -28,7 +28,7 @@ const { url, title } = Astro.props;
 
 <style>
 	.layout {
-        overflow: hidden;
+		overflow: hidden;
 		height: 36px;
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
@@ -40,14 +40,15 @@ const { url, title } = Astro.props;
 	.article-title {
 		font-size: 14px;
 		font-family: "M PLUS 1 Variable", sans-serif;
-        overflow: hidden;
+		overflow: hidden;
 	}
-    .article-title a {
-        overflow: hidden;
-    }
-    .title {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+	.article-title a {
+		overflow: hidden;
+	}
+	.title {
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 </style>
