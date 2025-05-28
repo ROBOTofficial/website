@@ -4,8 +4,12 @@ import "@fontsource/mochiy-pop-one";
 import MainLayout from "../layouts/MainLayout.astro";
 import ContentsBlock from "../components/ContentsBlock.astro";
 import Link from "../components/Link.astro";
+import ArticleLink from "../components/ArticleLink.astro";
 
+import { getCollection } from "astro:content";
 import { PROFILE } from "../consts";
+
+const articles = await getCollection("articles");
 ---
 
 <MainLayout>
@@ -49,7 +53,9 @@ import { PROFILE } from "../consts";
 				</ContentsBlock>
 			</div>
 		</div>
-		<div class="left"></div>
+		<div class="left">
+			{articles.map(({ data, id }) => <ArticleLink title={data.title} url={`/articles/${id}`} />)}
+		</div>
 	</div>
 </MainLayout>
 
@@ -96,9 +102,9 @@ import { PROFILE } from "../consts";
 		.layout {
 			grid-template-columns: 100%;
 		}
-        .profile {
-		    width: 100%;
-		    margin: 0;
-        }
+		.profile {
+			width: 100%;
+			margin: 0;
+		}
 	}
 </style>
