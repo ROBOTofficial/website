@@ -1,3 +1,3 @@
 # Wktk.moe
 
-作り途中
+[Wktk.moe](https://www.wktk.moe)のリポジトリです。
