@@ -15,7 +15,7 @@ const { url, title } = Astro.props;
 	<div class="layout">
 		<div>
 			<p class="article-title">
-				<a href={url}>{title}</a>
+				<a href={url}><strong class="title">{title}</strong></a>
 			</p>
 		</div>
 		<div>
@@ -28,9 +28,10 @@ const { url, title } = Astro.props;
 
 <style>
 	.layout {
+        overflow: hidden;
 		height: 36px;
 		display: grid;
-		grid-template-columns: 1fr auto;
+		grid-template-columns: minmax(0, 1fr) auto;
 		align-items: center;
 	}
 	.layout div img {
@@ -39,5 +40,14 @@ const { url, title } = Astro.props;
 	.article-title {
 		font-size: 14px;
 		font-family: "M PLUS 1 Variable", sans-serif;
+        overflow: hidden;
 	}
+    .article-title a {
+        overflow: hidden;
+    }
+    .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 </style>
