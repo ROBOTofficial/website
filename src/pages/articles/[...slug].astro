@@ -29,7 +29,7 @@ const { url } = article.data;
 			<Loading />
 		</MainLayout>
 	) : (
-		<BlogLayout {title} {pubDate} {updatedDate}>
+		<BlogLayout {title} {pubDate} {updatedDate} id={article.id}>
 			<main>
 				<Content />
 			</main>

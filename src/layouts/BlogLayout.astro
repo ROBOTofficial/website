@@ -8,6 +8,7 @@ import ContentsBlock from "../components/ContentsBlock.astro";
 import { parseDate } from "../lib/date";
 
 export type Props = {
+	id: string;
 	title: string;
 	pubDate: Date;
 	updatedDate: Date;
@@ -17,7 +18,11 @@ export type Props = {
 };
 
 const props = Astro.props;
-const { title, pubDate, updatedDate } = Astro.props;
+const { title, pubDate, updatedDate, id } = Astro.props;
+const editUrl = new URL(
+	id,
+	"https://github.com/ROBOTofficial/website/blob/main/src/content/articles/"
+).toString();
 ---
 
 <Layout {...props}>
@@ -35,6 +40,17 @@ const { title, pubDate, updatedDate } = Astro.props;
 				<MarkDown>
 					<slot />
 				</MarkDown>
+			</ContentsBlock>
+			<ContentsBlock>
+				<div>
+					<p>
+						編集は
+						<strong>
+							<a href={editUrl} target="_blank" rel="noopener noreferrer"> こちら </a>
+						</strong>
+						から
+					</p>
+				</div>
 			</ContentsBlock>
 		</div>
 		<div>
