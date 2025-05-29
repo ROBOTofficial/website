@@ -26,7 +26,10 @@ const editUrl = new URL(
 ---
 
 <Layout {...props}>
-	<div class="layout">
+	<div
+		class="layout"
+		data-pagefind-meta={`date:${updatedDate.getFullYear()}-${updatedDate.getMonth() + 1}-${updatedDate.getDate()}`}
+	>
 		<div>
 			<Header />
 			<ContentsBlock>
