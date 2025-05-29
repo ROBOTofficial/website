@@ -8,6 +8,7 @@ import ContentsBlock from "../components/ContentsBlock.astro";
 import { parseDate } from "../lib/date";
 
 export type Props = {
+	id: string;
 	title: string;
 	pubDate: Date;
 	updatedDate: Date;
@@ -17,11 +18,18 @@ export type Props = {
 };
 
 const props = Astro.props;
-const { title, pubDate, updatedDate } = Astro.props;
+const { title, pubDate, updatedDate, id } = Astro.props;
+const editUrl = new URL(
+	id,
+	"https://github.com/ROBOTofficial/website/blob/main/src/content/articles/"
+).toString();
 ---
 
 <Layout {...props}>
-	<div class="layout">
+	<div
+		class="layout"
+		data-pagefind-meta={`date:${updatedDate.getFullYear()}-${updatedDate.getMonth() + 1}-${updatedDate.getDate()}`}
+	>
 		<div>
 			<Header />
 			<ContentsBlock>
@@ -35,6 +43,18 @@ const { title, pubDate, updatedDate } = Astro.props;
 				<MarkDown>
 					<slot />
 				</MarkDown>
+			</ContentsBlock>
+			<ContentsBlock>
+				<div>
+					<p>その他の記事は<strong><a href="/articles">こちら</a></strong></p>
+					<p>
+						編集は
+						<strong>
+							<a href={editUrl} target="_blank" rel="noopener noreferrer"> こちら </a>
+						</strong>
+						から
+					</p>
+				</div>
 			</ContentsBlock>
 		</div>
 		<div>

@@ -39,6 +39,21 @@ const { title, description, keywords, color } = Astro.props;
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@AlwaysHarapan" />
 		<meta name="twitter:creator" content="@AlwaysHarapan" />
+
+		<script
+			is:inline
+			type="text/partytown"
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-VW9R8GHLTZ"></script>
+		<script is:inline type="text/partytown">
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments); //eslint-disable-line prefer-rest-params
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-VW9R8GHLTZ");
+		</script>
 	</head>
 	<body>
 		<slot />

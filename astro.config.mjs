@@ -7,6 +7,7 @@ import remarkLinkCard from "remark-link-card";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
 import icon from "astro-icon";
 
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -23,6 +24,11 @@ import rehypeExternalLinks from "rehype-external-links";
 export default defineConfig({
 	site: "https://wktk.moe",
 	integrations: [
+		partytown({
+			config: {
+				forward: ["dataLayer.push"]
+			}
+		}),
 		icon({
 			include: {
 				"preprocess: vitePreprocess(),": ["*"],
