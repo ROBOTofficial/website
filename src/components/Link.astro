@@ -11,7 +11,7 @@ const { url, title, icon } = Astro.props;
 <a class="block" href={url} target="_blank" rel="noopener noreferrer">
 	<div class="layout">
 		<div class="link-icon">
-			<img src={icon} alt="" />
+			<img loading="lazy" src={icon} alt="" />
 		</div>
 		<div class="info">
 			<p>{title}</p>
