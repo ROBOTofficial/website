@@ -2,8 +2,10 @@
 import "@fontsource/mochiy-pop-one";
 
 import Link from "./Link.astro";
+import Icon from "../../public/icon.webp";
 
 import { PROFILE } from "../consts";
+import { Image } from "astro:assets";
 
 export type Props = {
 	shortInMobile?: boolean;
@@ -14,7 +16,7 @@ const shortInMobile = Astro.props.shortInMobile ?? true;
 
 <div class="profile-txts">
 	<div>
-		<img class="profile-icon" src="/icon.webp" alt="" />
+		<Image class="profile-icon" src={Icon} alt="" />
 	</div>
 	<div>
 		<p class="profile-name">{PROFILE.name}</p>
