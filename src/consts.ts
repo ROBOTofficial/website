@@ -18,12 +18,12 @@ export const PROFILE = {
 	],
 	coding: [
 		{
-			url: "https://distopia.top",
+			url: "https://www.distopia.top",
 			title: "Distopia",
 			icon: "/icon/distopia.webp"
 		},
 		{
-			url: "https://verify.press",
+			url: "https://www.verify.press",
 			title: "Verify.press",
 			icon: "/icon/verify.webp"
 		}
