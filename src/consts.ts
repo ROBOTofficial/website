@@ -1,5 +1,5 @@
 export const REPOSITORY = {
-	url: "https://github.com/ROBOTofficial/website"
+	url: "https://github.com/ro80t/website"
 };
 
 export const SITE_NAME = "WKTK.moe";
@@ -30,7 +30,7 @@ export const PROFILE = {
 	],
 	links: [
 		{
-			url: "https://github.com/ROBOTofficial",
+			url: "https://github.com/ro80t",
 			title: "GITHUB",
 			icon: "/icon/github.webp"
 		},
